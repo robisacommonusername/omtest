@@ -9,7 +9,7 @@
 %tests folder
 
 function results = cross_test(varargin)
-	addpath('..');
+	addpath('./tests');
 	
 	%get list of tests to run
 	if nargin > 0
@@ -22,7 +22,7 @@ function results = cross_test(varargin)
 			tests = t;
 		end;
 	else
-		test_m_files = dir('./test*.m');
+		test_m_files = dir('./tests/test*.m');
 		%TODO: subdirectories
 		test_i = 1;
 		for ii = 1:length(test_m_files)
