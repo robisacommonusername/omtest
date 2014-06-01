@@ -4,7 +4,7 @@ function [status, msg] = assert_eq(a,b,vargin)
 		tol = vargin{1};
 	end;
 	
-	if norm(a-b) < tol
+	if norm(a-b)/norm(a) < tol
 		msg = 'PASS';
 		status = 0;
 	else
