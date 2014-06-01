@@ -19,7 +19,7 @@ function ret = run_tests(handles, names, varargin)
 		else
 			failed(fail_i).name = test_name;
 			failed(fail_i).text = msg;
-			failed = fail_i + 1;
+			fail_i = fail_i + 1;
 		end;
 	end;
 	

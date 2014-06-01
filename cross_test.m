@@ -8,13 +8,13 @@
 %run, otherwise it will just run all the tests it finds in the
 %tests folder
 
-function results = cross_test(vargin)
+function results = cross_test(varargin)
 	addpath('..');
 	
 	%get list of tests to run
 	if nargin > 0
 		%user specified tests
-		t = vargin{1};
+		t = varargin{1};
 		if ischar(t)
 			tests(1).name = t;
 			tests(1).args = {};
