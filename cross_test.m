@@ -25,7 +25,8 @@ function results = cross_test(varargin)
 		test_m_files = dir('./test*.m');
 		%TODO: subdirectories
 		test_i = 1;
-		for m_file = test_m_files
+		for ii = 1:length(test_m_files)
+			m_file = test_m_files(ii);
 			len = length(m_file.name);
 			%remove .m from filename
 			tests(test_i).name = substr(m_file.name,1,len-2);
