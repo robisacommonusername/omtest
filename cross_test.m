@@ -40,10 +40,10 @@ function results = cross_test(varargin)
 	result_i = 1;
 	for test = tests
 		fprintf('Beginning test %s\n\n', test.name);
-		tic;
+		tic();
 		test_fn = str2func(test.name);
 		battery_results = test_fn(test.args);
-		time = toc;
+		time = toc();
 		%display summary of test results from this battery
 		fprintf('%d passed, %d failed\n\n', ...
 			length(battery_results.passed), ...

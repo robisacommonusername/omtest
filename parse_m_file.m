@@ -7,6 +7,7 @@
 function funs = parse_m_file(fn)
 	funs = {};
 	f = fopen(fn);
+	%keyboard;
 	if f == -1
 		%file not found
 		fprintf('m file %s could not be found\n', fn);

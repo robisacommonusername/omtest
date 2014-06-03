@@ -5,6 +5,7 @@ function ret = run_tests(handles, names, varargin)
 	fail_i = 1;
 	passed = {};
 	failed = {};
+	messages = {};
 	
 	for ii = 1:length(handles)
 		f = handles{ii};
