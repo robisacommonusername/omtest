@@ -5,7 +5,7 @@
 %$\s*function [?a([ ,]\w)*]?\s*=\s*fn_name\s*\(args\)\n^
 
 function funs = parse_m_file(fn)
-	funs = {};
+	%funs = {};
 	f = fopen(fn);
 	%keyboard;
 	if f == -1
@@ -34,7 +34,7 @@ function funs = parse_m_file(fn)
 		line = fgetl(f);
 	end;
 	fclose(f);
-end;
+end
 
 function arg_arr = parse_args(argstr)
 	arg_arr = {};
@@ -49,7 +49,7 @@ function arg_arr = parse_args(argstr)
 	else
 		arg_arr = strsplit(argstr, ', ', true);
 	end;
-end;
+end
 
 function ret_arr = parse_rets(retstr)
 	ret_arr = {};
@@ -62,6 +62,6 @@ function ret_arr = parse_rets(retstr)
 	if length(retstr) == 0
 		return;
 	else
-		ret_arr = strsplit(retstr, ', ;', true);
+		ret_arr = regexp(retstr, ',|;', 'split');
 	end;
-end;
+end

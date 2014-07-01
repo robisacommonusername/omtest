@@ -9,7 +9,7 @@ function tests = find_tests(fn)
 	tests = {};
 	for ii = 1:length(test_functions)
 		if ii > 1
-			tests(ii-1) = test_functions(ii).name;
+			tests{ii-1} = test_functions(ii).name;
 		end;
 	end;
 end
