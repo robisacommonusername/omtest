@@ -24,7 +24,7 @@ function [status, msg] = assert_eq(a,b,varargin)
 		msg = 'PASS';
 		status = 0;
 	else
-		msg = 'FAIL';
+		msg = sprintf('FAIL. %s err=%f',type, err);
 		status = 1;
 	end;
 end
