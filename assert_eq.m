@@ -1,6 +1,6 @@
 function [status, msg] = assert_eq(a,b,varargin)
 	tol = 0.001;
-	type = 'rel';
+	type = 'abs';
 	if nargin > 2
 		tol = varargin{1};
 	end;
@@ -8,10 +8,15 @@ function [status, msg] = assert_eq(a,b,varargin)
 		type = varargin{2};
 	end;
 	
-	err = norm(a-b)/norm(a);
+	err = norm(a-b);
 	switch (type)
 		case 'rel'
-		err = norm(a-b)/norm(a);
+		if norm(a) > eps
+			err = norm(a-b)/norm(a);
+		else
+			err = 0;
+		end;
+		
 		if err < tol
 			msg = 'PASS';
 			status = 0;
