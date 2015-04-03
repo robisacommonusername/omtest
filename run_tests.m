@@ -28,12 +28,14 @@ function ret = run_tests(tests, varargin)
 		messages(ii).text = msg;
 		if (status == STATUS_PASS)
 			passed(pass_i).name = test_name;
+			passed(pass_i).status = status;
 			passed(pass_i).text = msg;
 			passed(pass_i).f = f;
 			passed(pass_i).time = toc;
 			pass_i = pass_i + 1;
 		else
 			failed(fail_i).name = test_name;
+			failed(fail_i).status = status;
 			failed(fail_i).text = msg;
 			failed(fail_i).f = f;
 			failed(fail_i).time = toc;
