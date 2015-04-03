@@ -5,19 +5,32 @@
 %$\s*function [?a([ ,]\w)*]?\s*=\s*fn_name\s*\(args\)\n^
 
 function funs = parse_m_file(fn)
-	%funs = {};
 	f = fopen(fn);
-	%keyboard;
 	if f == -1
 		%file not found
 		fprintf('m file %s could not be found\n', fn);
 		return;
 	end;
 	
-	line = fgetl(f);
 	function_matcher = 'function\s+(\[[^\]]+\]|[^\s=]+)\s*=\s*([\w\d_-]+)\s*(\([^)]*\))?';
 	fun_i = 1;
+	line = fgetl(f);
 	while ischar(line)
+		line = strip_comment(line);
+		
+		%Look for line continuation, ...
+		off = regexp(line, '[.]{3}\s*$');
+		while length(off) > 0
+			line = substr(line, 1, off-1);
+			next_line = fgetl(f);
+			if ischar(next_line)
+				line = [line, next_line];
+				off = regexp(line, '[.]{3}\s*$');
+			else
+				break
+			end
+		end
+	
 		[tokens] = regexp(line, function_matcher, 'tokens');
 		if length(tokens) > 0
 			funs(fun_i).name = tokens{1}{2};
@@ -47,7 +60,7 @@ function arg_arr = parse_args(argstr)
 	if length(argstr) == 0
 		return;
 	else
-		arg_arr = strsplit(argstr, ', ', true);
+		arg_arr = arrayfun(@(s) strtrim(s), strsplit(argstr, ',', true));
 	end;
 end
 
